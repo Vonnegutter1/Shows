@@ -1,8 +1,8 @@
-import { put, takeEvery } from 'redux-saga/effects';
+import { put } from 'redux-saga/effects';
 import axios from 'axios';
 
 
-function* fetchShowDetails() {
+function* fetchShowDetails(action) {
     try {
         const response = yield axios.get(`/shows/details?id=${action.payload}`);
         yield put({ type: 'SET_SHOW_DETAILS', payload: response.data })

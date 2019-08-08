@@ -1,11 +1,9 @@
-import { put, takeEvery } from 'redux-saga/effects';
+import { put } from 'redux-saga/effects';
 import axios from 'axios';
 
-function* showSaga() {
-    yield takeEvery('FETCH_SHOWS', fetchShows)
-}
 
-function* fetchShows() {
+
+function* showSaga() {
     try {
         const response = yield axios.get('/shows');
         yield put({ type: 'SET_SHOWS', payload: response.data})

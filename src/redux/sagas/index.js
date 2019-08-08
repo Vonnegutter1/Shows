@@ -4,7 +4,7 @@ import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import showSaga from './showSaga';
 import fetchShowDetails from './fetchShowDetails';
-
+import addShow from './addShow';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -17,11 +17,14 @@ import fetchShowDetails from './fetchShowDetails';
 
 export default function* rootSaga() {
   yield takeEvery('FETCH_SHOW_DETAILS', fetchShowDetails)
+  yield takeEvery('FETCH_SHOWS', showSaga)
+  // yield takeEvery(?????POST?????)
   yield all([
     loginSaga(),
     registrationSaga(),
     userSaga(),
     showSaga(),
     fetchShowDetails(),
+    addShow(),
   ]);
 }

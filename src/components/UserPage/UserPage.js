@@ -40,7 +40,7 @@ class UserPage extends Component {
           <p onClick={() => this.handleClick(item)}>City, State: {item.city_state}</p>
        <br/> 
           <p onClick={() => this.handleClick(item)}>Band's Website: {item.band_website}</p>
-          <img src="./public/images/EdwardSharpe.jpg" alt=""></img>
+          <img src="public/images/EdwardSharpe.jpg" alt=""/>
           
        
        </p>
