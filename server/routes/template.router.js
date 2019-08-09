@@ -36,10 +36,77 @@ router.get('/details', (req, res) => {
 /**
  * POST route template
  */
-// router.post('/', (req, res) => {
-//     console.log('');
-//     const sqlTEXT =`INSERT INTO "shows" ("band_name", "date", "venue", "city_state", "memories", "people_went_with", "band_website"???, "images") 
-//   VALUES ;
+
+router.post('/', async (req, res) => {
+    const client = await pool.connect();
+
+    try {
+        const {
+            band_name,
+            date,
+            venue,
+            city_state,
+            memories,
+            people_went_with,
+            band_website,
+            images,
+        } = req.body;
+        await client.query('BEGIN')
+        const showsInsertResults = await client.query (`INSERT INTO "shows" ("band_name", "date", "venue", "city_state", "memories", "people_went_with", 
+        "band_website")
+        VALUES ($1, $2, $3, $4, $5, $6)
+        RETURNING id;`, [band_name, date, venue, city_state, memories, people_went_with]);
+        const showId = showInsertResults.rows[0].id;
+
+        await Promise.all(shows.map(show => {
+            const insertLineItemText = `INSERT INTO "images" ("images") 
+            VALUES ($1)`;
+            const insertLineItemValues = [images];
+            return client.query(insertLineItemText, insertLineItemValues);
+        }));
+        await client.query('COMMIT')
+        res.sendStatus(201);
+    } catch (error){
+        await client.query('ROLLBACK')
+        console.log('Error POST /shows/add', error);
+        res.sendStatus(500);
+    } finally {
+        client.release()
+    }
+});
+// router.post('/', async (req, res) => {
+//     const client = await pool.connect();
+
+//     try {
+//         const {
+//             customer_name,
+//             street_address,
+//             city,
+//             zip,
+//             type,
+//             total,
+//             pizzas
+//         } = req.body;
+//         await client.query('BEGIN')
+//         const orderInsertResults = await client.query(`INSERT INTO "orders" ("customer_name", "street_address", "city", "zip", "type", "total")
+//         VALUES ($1, $2, $3, $4, $5, $6)
+//         RETURNING id;`, [customer_name, street_address, city, zip, type, total]);
+//         const orderId = orderInsertResults.rows[0].id;
+
+//         await Promise.all(pizzas.map(pizza => {
+//             const insertLineItemText = `INSERT INTO "line_item" ("order_id", "pizza_id", "quantity") VALUES ($1, $2, $3)`;
+//             const insertLineItemValues = [orderId, pizza.id, pizza.quantity];
+//             return client.query(insertLineItemText, insertLineItemValues);
+//         }));
+//         await client.query('COMMIT')
+//         res.sendStatus(201);
+//     } catch (error) {
+//         await client.query('ROLLBACK')
+//         console.log('Error POST /api/order', error);
+//         res.sendStatus(500);
+//     } finally {
+//         client.release()
+//     }
 // });
 
 module.exports = router;

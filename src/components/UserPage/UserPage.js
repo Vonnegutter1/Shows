@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import { withStyles } from '@material-ui/core/styles';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import CardMedia from '@material-ui/core/CardMedia';
+import Card from '@material-ui/core/Card';
 
 
 
-// this could also be written with destructuring parameters as:
-// const UserPage = ({ user }) => (
-// and then instead of `props.user.username` you could use `user.username`
+
 class UserPage extends Component {
 
   componentDidMount() {
@@ -15,7 +18,7 @@ class UserPage extends Component {
 
   handleClick = (item) => {
     console.log(item);
-      this.props.history.push(`/specificshow/${item.id}`)
+    this.props.history.push(`/specificshow/${item.id}`)
   }
 
   render() {
@@ -27,31 +30,37 @@ class UserPage extends Component {
           <p>I Was There</p>
         </h1>
         <p>Click a show to see more details</p>
-    
-    <div>
-      {shows.map(item => (
-       <p key={item.id}> 
-          <p onClick={() => this.handleClick(item)}>Show: {item.band_name}</p> 
-       <br/>
-          <p onClick={() => this.handleClick(item)}>Date: {item.date}</p>
-       <br/>
-          <p onClick={() => this.handleClick(item)}>Venue: {item.venue}</p>
-       <br/>
-          <p onClick={() => this.handleClick(item)}>City, State: {item.city_state}</p>
-       <br/> 
-          <p onClick={() => this.handleClick(item)}>Band's Website: {item.band_website}</p>
-          <img src="public/images/EdwardSharpe.jpg" alt=""/>
+
+        <div>
+          {shows.map(item => 
           
-       
-       </p>
-      ))}
-    </div>
-        
+          
+          
+          
+          
+          // (
+          //   <p key={item.id}>
+          //     <p onClick={() => this.handleClick(item)}>Show: {item.band_name}</p>
+          //     <br />
+          //     <p onClick={() => this.handleClick(item)}>Date: {item.date}</p>
+          //     <br />
+          //     <p onClick={() => this.handleClick(item)}>Venue: {item.venue}</p>
+          //     <br />
+          //     <p onClick={() => this.handleClick(item)}>City, State: {item.city_state}</p>
+          //     <br />
+          //     <p onClick={() => this.handleClick(item)}>Band's Website: {item.band_website}</p>
+          //     <img src="/images/EdwardSharpe.jpg" alt="" />
+
+
+          //   </p>
+          // )
+          )}
+        </div>
+
         <LogOutButton className="log-in" />
       </div>
     )
   }
-
 };
 // Instead of taking everything from state, we just want the user info.
 // if you wanted you could write this code like this:
@@ -62,6 +71,5 @@ class UserPage extends Component {
 const mapStateToProps = storeInstance => ({
   storeInstance
 })
-
 // this allows us to use <App /> in index.js
 export default connect(mapStateToProps)(UserPage);

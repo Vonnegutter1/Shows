@@ -18,7 +18,7 @@ import addShow from './addShow';
 export default function* rootSaga() {
   yield takeEvery('FETCH_SHOW_DETAILS', fetchShowDetails)
   yield takeEvery('FETCH_SHOWS', showSaga)
-  // yield takeEvery(?????POST?????)
+  yield takeEvery('ADD_SHOW', addShow)
   yield all([
     loginSaga(),
     registrationSaga(),
