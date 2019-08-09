@@ -57,14 +57,14 @@ class UserPage extends Component {
       <div>
         <button type="submit">Add New Show</button>
         <h1 id="welcome">
-          <p>I Was There</p>
+          <p><center>I Was There</center></p>
         </h1>
-        <p>~Click on a show to see more details!~</p>
+        <p><center>Click on a show to see more details!</center></p>
 
   
           {shows.map(item => 
           
-            <Card key={item.id} className={classes.card}>
+            <Card key={item.id} className={classes.card} onClick={() => this.handleClick(item)}>
               <CardMedia
                 className={classes.media}
                 image="/images/EdwardSharpe.jpg"
