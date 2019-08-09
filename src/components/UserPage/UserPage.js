@@ -7,7 +7,34 @@ import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
 
+const styles = muiBaseTheme => ({
+  card: {
+    maxWidth: 700,
+    margin: muiBaseTheme.spacing.unit,
+    transition: "0.3s",
+    boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+    "&:hover": {
+      boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+    }
+  },
+  media: {
+    paddingTop: "56.25%"
+  },
+  content: {
+    textAlign: "left",
+    padding: muiBaseTheme.spacing.unit * 3
+  },
+  divider: {
+    margin: `${muiBaseTheme.spacing.unit * 3}px 0`
+  },
+  heading: {
+    fontWeight: "bold"
+  },
+  subHeading: {
+    lineHeight: 1.8
+  },
 
+});
 
 
 class UserPage extends Component {
@@ -22,54 +49,78 @@ class UserPage extends Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     let shows = this.props.storeInstance.showReducer;
+    
     return (
       <div>
         <button type="submit">Add New Show</button>
         <h1 id="welcome">
           <p>I Was There</p>
         </h1>
-        <p>Click a show to see more details</p>
+        <p>~Click on a show to see more details!~</p>
 
-        <div>
+  
           {shows.map(item => 
           
+            <Card key={item.id} className={classes.card}>
+              <CardMedia
+                className={classes.media}
+                image="/images/EdwardSharpe.jpg"
+              />
+              <CardContent className={classes.content}>
+                <Typography
+                  className={"MuiTypography--heading"}
+                  variant={"h6"}
+                  gutterBottom
+                >
+                  {item.band_name}
+                </Typography>
+                <Typography
+                  className={"MuiTypography--subheading"}
+                  variant={"caption"}
+                >
+                  {item.date}
+                </Typography>
+                <br/>
+                <Typography
+                  className={"MuiTypography--subheading"}
+                  variant={"caption"}
+                >
+                  {item.venue}
+                </Typography>
+                <br/>
+                <Typography
+                  className={"MuiTypography--subheading"}
+                  variant={"caption"}
+                >
+                  {item.city_state}
+                </Typography>
+                <br/>
+                <Typography
+                  className={"MuiTypography--subheading"}
+                  variant={"caption"}
+                >
+                  {item.band_website}
+                </Typography>
+               
+            
+              </CardContent>
+            </Card>
           
+  
           
-          
-          
-          // (
-          //   <p key={item.id}>
-          //     <p onClick={() => this.handleClick(item)}>Show: {item.band_name}</p>
-          //     <br />
-          //     <p onClick={() => this.handleClick(item)}>Date: {item.date}</p>
-          //     <br />
-          //     <p onClick={() => this.handleClick(item)}>Venue: {item.venue}</p>
-          //     <br />
-          //     <p onClick={() => this.handleClick(item)}>City, State: {item.city_state}</p>
-          //     <br />
-          //     <p onClick={() => this.handleClick(item)}>Band's Website: {item.band_website}</p>
-          //     <img src="/images/EdwardSharpe.jpg" alt="" />
-
-
-          //   </p>
-          // )
           )}
-        </div>
-
+       
         <LogOutButton className="log-in" />
       </div>
     )
   }
 };
-// Instead of taking everything from state, we just want the user info.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({user}) => ({ user });
-// const mapStateToProps = state => ({
-//   user: state.user,
-// });
+
 const mapStateToProps = storeInstance => ({
   storeInstance
 })
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(UserPage);
+export default withStyles(styles)(connect(mapStateToProps)(UserPage));
