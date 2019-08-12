@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
+
 
 
 class AddShow extends Component {
 
-    componentDidMount() {
-        this.props.dispatch({ type: '???' });
-    }
+    // componentDidMount() {
+    //     this.props.dispatch({ type: '' });
+    // }
 
     // handleClick = (item) => {
     //     console.log(item);
@@ -15,18 +15,29 @@ class AddShow extends Component {
     // }
 
     render() {
-        let shows = this.props.storeInstance.showReducer;
+        // let shows = this.props.storeInstance.showReducer;
         return (
             <div>
-                <button type="submit">Save</button>
-                <h1 id="welcome">
-                    <p>Add New Show</p>
-                </h1>
-
-                <form>
+                
+                <h3>
+                    Add New Show
+                </h3>
+                <form onSubmit={this.handleSubmit}>
                     
+                    Bands: <input type="text" placeholder="Bands"></input>
+                    <br/>
+                    Date of Show: <input type="text" placeholder="Date of Show"></input><br/>
+                    Venue: <input type="text" placeholder="Venue"></input><br />
+                    City, State: <input type="text" placeholder="City, State"></input><br />
+                    People Went With: <input type="text" placeholder="People Went With"></input><br />
+                    Memories: <input type="text" placeholder="Memories"></input><br/>
+                    Band's Website: <input type="text" placeholder="Band's Website"></input><br/>
+
+                    Upload Images Placeholder:
+
                 </form>
-               
+
+                <button type="submit">Save</button>
                 {/* <div>
                     {shows.map(item => (
                         <p key={item.id}>
@@ -37,19 +48,11 @@ class AddShow extends Component {
                     ))}
                 </div> */}
 
-
-
             </div>
         )
     }
-
 };
-// Instead of taking everything from state, we just want the user info.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({user}) => ({ user });
-// const mapStateToProps = state => ({
-//   user: state.user,
-// });
+
 const mapStateToProps = storeInstance => ({
     storeInstance
 })

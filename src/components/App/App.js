@@ -15,7 +15,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import AddShow from '../AddShow/AddShow';
 import SpecificShow from '../SpecificShow/SpecificShow';
 
 import './App.css';
@@ -53,8 +53,8 @@ class App extends Component {
             they will see the info page instead. */}
             <ProtectedRoute
               exact
-              path="/add"
-              component={InfoPage}
+              path="/addshow"
+              component={AddShow}
             />
             <ProtectedRoute
               exact
