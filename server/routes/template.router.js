@@ -7,7 +7,9 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
     console.log('In Router GET shows data');
-    const sqlText = `SELECT * from "shows";`;
+    const sqlText = `SELECT * FROM "shows"
+  JOIN "images" on shows.id = images.shows_id
+  WHERE "main_image" = 'true';`;
     pool.query(sqlText)
         .then((response) => {
             res.send(response.rows);
@@ -21,7 +23,9 @@ router.get('/', (req, res) => {
 router.get('/details', (req, res) => {
     console.log('req.query.id');
     
-    pool.query(`SELECT * from "shows" WHERE id=$1;`, [req.query.id])
+    pool.query(`SELECT * from "shows" 
+	JOIN "images" on shows.id = images.shows_id
+	WHERE shows.id=1;`, [req.query.id])
         .then((response) => {
             res.send(response.rows[0]);
         })

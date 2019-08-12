@@ -12,6 +12,7 @@ const styles = muiBaseTheme => ({
     maxWidth: 700,
     margin: muiBaseTheme.spacing.unit,
     transition: "0.3s",
+
     boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
     "&:hover": {
       boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
@@ -21,7 +22,7 @@ const styles = muiBaseTheme => ({
     paddingTop: "56.25%"
   },
   content: {
-    textAlign: "left",
+    textAlign: "center",
     padding: muiBaseTheme.spacing.unit * 3
   },
   divider: {
@@ -67,7 +68,7 @@ class UserPage extends Component {
             <Card key={item.id} className={classes.card} onClick={() => this.handleClick(item)}>
               <CardMedia
                 className={classes.media}
-                image="/images/EdwardSharpe.jpg"
+                image={item.url}
               />
               <CardContent className={classes.content}>
                 <Typography
@@ -108,9 +109,6 @@ class UserPage extends Component {
             
               </CardContent>
             </Card>
-          
-  
-          
           )}
        
         <LogOutButton className="log-in" />

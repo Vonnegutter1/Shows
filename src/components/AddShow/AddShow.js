@@ -4,6 +4,19 @@ import { connect } from 'react-redux';
 
 
 class AddShow extends Component {
+    state = {
+        newShow: {
+            band_name: 4,
+            date: '',
+            venue: '',
+            city_state: '',
+            memories: '',
+            people_went_with: '',
+            band_website: '',
+            images: '',
+            images: '',
+        }
+    }
 
     // componentDidMount() {
     //     this.props.dispatch({ type: '' });
