@@ -40,75 +40,78 @@ const styles = muiBaseTheme => ({
 class SpecificShow extends Component {
 
     componentDidMount() {
-        // this.props.dispatch({ type: 'FETCH_SHOW_DETAILS', payload: this.props.match.params.id });
+        this.props.dispatch({ type: 'FETCH_SHOW_DETAILS', payload: {shows_id: this.props.match.params.id }});
     }
     render() {
+        
         const { classes } = this.props;
         let shows = this.props.storeInstance.fetchShowReducer;
-     
-        return (
-            <div>
-              {JSON.stringify(this.props.storeInstance.fetchShowReducer)} 
+        // const showId = this.props.match.params.id;
 
-              
-                    <Card className={classes.card}>
+        return (
+            
+            <div>
+                {JSON.stringify(this.props.storeInstance.fetchShowReducer)}
+
+                {shows.map(item => (
+                <Card key={item.id} className={classes.card}>
                     <CardMedia
-                            className={classes.media}
-                              image={shows.url}       
+                        className={classes.media}
+                        image={item.url}
                     />
-                        <CardContent className={classes.content}>
-                            <Typography
-                                className={"MuiTypography--heading"}
-                                variant={"h6"}
-                                gutterBottom
-                            >
-                                {shows.band_name}
-                            </Typography>
-                            <Typography
-                                className={"MuiTypography--subheading"}
-                                variant={"caption"}
-                            >
-                                {shows.date}
-                            </Typography>
-                            <br />
-                            <Typography
-                                className={"MuiTypography--subheading"}
-                                variant={"caption"}
-                            >
-                                {shows.venue}
-                            </Typography>
-                            <br />
-                            <Typography
-                                className={"MuiTypography--subheading"}
-                                variant={"caption"}
-                            >
-                                {shows.city_state}
-                            </Typography>
-                            <br />
-                            <Typography
-                                className={"MuiTypography--subheading"}
-                                variant={"caption"}
-                            >
-                                {shows.band_website}
-                            </Typography>
-                        <br />
-                            <Typography
-                                className={"MuiTypography--subheading"}
-                                variant={"caption"}
-                            >
-                                {shows.people_went_with}
-                            </Typography>
+                    <CardContent className={classes.content}>
+                        <Typography
+                            className={"MuiTypography--heading"}
+                            variant={"h6"}
+                            gutterBottom
+                        >
+                            {item.band_name}
+                        </Typography>
+                        <Typography
+                            className={"MuiTypography--subheading"}
+                            variant={"caption"}
+                        >
+                            {item.date}
+                        </Typography>
                         <br />
                         <Typography
                             className={"MuiTypography--subheading"}
                             variant={"caption"}
                         >
-                            {shows.memories}
+                            {item.venue}
                         </Typography>
-                        </CardContent>
+                        <br />
+                        <Typography
+                            className={"MuiTypography--subheading"}
+                            variant={"caption"}
+                        >
+                            {item.city_state}
+                        </Typography>
+                        <br />
+                        <Typography
+                            className={"MuiTypography--subheading"}
+                            variant={"caption"}
+                        >
+                            {item.band_website}
+                        </Typography>
+                        <br />
+                        <Typography
+                            className={"MuiTypography--subheading"}
+                            variant={"caption"}
+                        >
+                            {item.people_went_with}
+                        </Typography>
+                        <br />
+                        <Typography
+                            className={"MuiTypography--subheading"}
+                            variant={"caption"}
+                        >
+                            {item.memories}
+                        </Typography>
+                    </CardContent>
 
-                    </Card>
-                )}
+                </Card>
+                ))}
             </div>
         )
     }
@@ -121,4 +124,3 @@ const mapStateToProps = storeInstance => ({
 
 // this allows us to use <App /> in index.js
 export default withStyles(styles)(connect(mapStateToProps)(SpecificShow));
-

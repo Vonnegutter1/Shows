@@ -31,8 +31,8 @@ router.get('/:id', (req, res) => {
     
     pool.query(sqlText, value)
         .then((response) => {
-            console.log('response.rows is', response.rows[0])
-            res.send(response.rows[0]);
+            console.log('response.rows is', response.rows)
+            res.send(response.rows);
         })
         .catch((error) => {
             console.log('Unable to get show details.', error)
