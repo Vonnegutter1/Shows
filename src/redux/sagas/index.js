@@ -3,7 +3,7 @@ import loginSaga from './loginSaga';
 import registrationSaga from './registrationSaga';
 import userSaga from './userSaga';
 import showSaga from './showSaga';
-import fetchShowDetails from './fetchShowDetails';
+import showDetailRoot from './fetchShowDetails';
 import addShow from './addShow';
 
 // rootSaga is the primary saga.
@@ -16,15 +16,16 @@ import addShow from './addShow';
 
 
 export default function* rootSaga() {
-  yield takeEvery('FETCH_SHOW_DETAILS', fetchShowDetails)
+  
   yield takeEvery('FETCH_SHOWS', showSaga)
   yield takeEvery('ADD_SHOW', addShow)
+
   yield all([
     loginSaga(),
     registrationSaga(),
     userSaga(),
     showSaga(),
-    fetchShowDetails(),
+    showDetailRoot(),
     addShow(),
   ]);
 }

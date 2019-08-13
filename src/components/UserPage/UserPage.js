@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 
 const styles = muiBaseTheme => ({
   card: {
+    
     maxWidth: 700,
     margin: muiBaseTheme.spacing.unit,
     transition: "0.3s",
@@ -20,7 +21,8 @@ const styles = muiBaseTheme => ({
     }
   },
   media: {
-    paddingTop: "56.25%"
+    paddingTop: "56.25%",
+    
   },
   content: {
     textAlign: "center",
@@ -46,10 +48,12 @@ class UserPage extends Component {
 
   handleClick = (item) => {
     console.log(item);
+    this.props.dispatch({ type: 'FETCH_SHOW_DETAILS', payload: item });
     this.props.history.push(`/specificshow/${item.id}`)
   }
 
   render() {
+    
     const { classes } = this.props;
 
     let shows = this.props.storeInstance.showReducer;
@@ -108,7 +112,7 @@ class UserPage extends Component {
                
             
               </CardContent>
-              
+
             </Card>
           )}
        

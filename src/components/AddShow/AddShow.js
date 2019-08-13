@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 class AddShow extends Component {
     state = {
         newShow: {
-            band_name: 4,
+            band_name: '',
             date: '',
             venue: '',
             city_state: '',
@@ -46,7 +46,10 @@ class AddShow extends Component {
                     Memories: <input type="text" placeholder="Memories"></input><br/>
                     Band's Website: <input type="text" placeholder="Band's Website"></input><br/>
 
-                    Upload Images Placeholder:
+                    Upload Image <input type="text" placeholder="Image 1"></input><br/>
+                    Upload Image <input type="text" placeholder="Image 2"></input><br />
+                    Upload Image <input type="text" placeholder="Image 3"></input><br />
+                
 
                 </form>
 
