@@ -51,7 +51,10 @@ class SpecificShow extends Component {
         return (
             
             <div>
-                {JSON.stringify(this.props.storeInstance.fetchShowReducer)}
+
+                {shows.map(item => (
+                    <div key={item.id}><img src={item.url}/></div>
+                ))}
 
                 {shows.map(item => (
                 <Card key={item.id} className={classes.card}>
