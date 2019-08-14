@@ -51,17 +51,21 @@ class SpecificShow extends Component {
         return (
             
             <div>
+                  {shows.map(item => (
+                    <Card key={item.id} className={classes.card}>
+                        <CardMedia
+                            className={classes.media}
 
-                {shows.map(item => (
-                    <div key={item.id}><img src={item.url}/></div>
+                            image={item.url} /></Card>
                 ))}
+                
 
                 {shows.map(item => (
                 <Card key={item.id} className={classes.card}>
-                    <CardMedia
+                    {/* <CardMedia
                         className={classes.media}
                         image={item.url}
-                    />
+                    /> */}
                     <CardContent className={classes.content}>
                         <Typography
                             className={"MuiTypography--heading"}
@@ -69,6 +73,7 @@ class SpecificShow extends Component {
                             gutterBottom
                         >
                             {item.band_name}
+                            {}
                         </Typography>
                         <Typography
                             className={"MuiTypography--subheading"}
@@ -114,7 +119,9 @@ class SpecificShow extends Component {
                     </CardContent>
 
                 </Card>
+                
                 ))}
+              
             </div>
         )
     }

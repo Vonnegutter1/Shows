@@ -20,6 +20,9 @@ form {
 input {
     margin: 5px;
     margin-bottom: 10px;
+    min-width: 40;
+    
+
 }
 
 .log-in, .log-out, .register {
