@@ -53,7 +53,7 @@ class AddShow extends Component {
         console.log(this.state.newShow.images)
         return (
             <div class="form">
-                <pre>{JSON.stringify(this.state)}</pre>
+                
                 <h3>
                     Add New Show
                 </h3>
@@ -91,7 +91,6 @@ class AddShow extends Component {
                     Band's Website: <input id="textbox" type="text" placeholder="Band's Website" 
                     value={this.state.newShow.band_website}
                         onChange={(event) => this.handleChange('band_website', event)}></input><br/>
-
                     Upload Image 1 <input id="textbox" type="text" placeholder="Image 1" 
                     value={this.state.newShow.image1}
                         onChange={(event) => this.handleChange('image1', event)}
@@ -105,7 +104,7 @@ class AddShow extends Component {
                     value={this.state.newShow.image3}
                         onChange={(event) => this.handleChange('image3', event)}></input><br />
 
-                    <button type="submit" >Save</button>
+                    <button type="submit">Save</button>
 
                 </form>
 

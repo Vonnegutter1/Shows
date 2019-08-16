@@ -13,17 +13,20 @@ import Grid from '@material-ui/core/Grid';
 const styles = muiBaseTheme => ({
   card: {
     
-    maxWidth: 700,
+    width: 700,
     margin: muiBaseTheme.spacing.unit,
     transition: "0.3s",
 
     boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
     "&:hover": {
       boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
-    }
+    },
+    height: '650px'
   },
   media: {
     paddingTop: "56.25%",
+    width: '100%',
+    height: '20%'
     
   },
   content: {
@@ -56,7 +59,11 @@ class UserPage extends Component {
     console.log(this.props.storeInstance.showReducer);
   }
 
-  handleAddClick = ()
+  handleAddClick = () => {
+    this.props.history.push(`/addshow`)
+   
+  };
+
   render() {
     
     const { classes } = this.props;
@@ -65,7 +72,7 @@ class UserPage extends Component {
     
     return (
       <div>
-        <button type="submit" onClick={() => this.handleAddClick(item)}>Add New Show</button>
+        <button type="submit" onClick={() => this.handleAddClick()}>Add New Show</button>
         <h1 id="welcome">
           <p><center>I Was There</center></p>
         </h1>
@@ -73,7 +80,6 @@ class UserPage extends Component {
 
   <Grid className="center">
           {shows.map(item => 
-            
             <Card key={item.id} className={classes.card} onClick={() => this.handleClick(item)}>
               <CardMedia
                 className={classes.media}
@@ -120,6 +126,7 @@ class UserPage extends Component {
 
             </Card>
           )}
+          
         </Grid>
         
         <LogOutButton className="log-in" />
