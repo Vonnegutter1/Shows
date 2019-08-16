@@ -52,7 +52,7 @@ class SpecificShow extends Component {
         console.log('Deleted Button Click', this.props.storeInstance.fetchShowReducer.id)
         Axios({
             method: 'DELETE',
-            url: `/shows/${this.props.storeInstance.fetchShowReducer.id}`
+            url: `/shows/${this.props.storeInstance.fetchShowReducer.shows_id}`
         }).then ((response) => {
             console.log('Deleted', response)
         }).catch((error) => {

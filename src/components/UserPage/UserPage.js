@@ -13,15 +13,16 @@ import Grid from '@material-ui/core/Grid';
 const styles = muiBaseTheme => ({
   card: {
     
-    width: 700,
+    width: 200,
     margin: muiBaseTheme.spacing.unit,
     transition: "0.3s",
+    
 
     boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
     "&:hover": {
       boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
     },
-    height: '650px'
+    height: '450px'
   },
   media: {
     paddingTop: "56.25%",
@@ -100,26 +101,26 @@ class UserPage extends Component {
                   {item.date}
                 </Typography>
                 <br/>
-                <Typography
+                {/* <Typography
                   className={"MuiTypography--subheading"}
                   variant={"caption"}
                 >
                   {item.venue}
-                </Typography>
+                </Typography> */}
                 <br/>
-                <Typography
+                {/* <Typography
                   className={"MuiTypography--subheading"}
                   variant={"caption"}
                 >
                   {item.city_state}
-                </Typography>
+                </Typography> */}
                 <br/>
-                <Typography
+                {/* <Typography
                   className={"MuiTypography--subheading"}
                   variant={"caption"}
                 >
                   {item.band_website}
-                </Typography>
+                </Typography> */}
                
             
               </CardContent>

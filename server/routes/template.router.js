@@ -115,9 +115,12 @@ router.post('/add', async (req, res) => {
 
 router.delete('/:id', (req, res) => {
     console.log('SKFHJDIUWETKHUG', req.params.id);
-    const sqlText = `DELETE FROM "shows" WHERE id=$1;`
+    const sqlText1 = `DELETE FROM "images" WHERE shows_id=$1;`;
+    const sqlText2 = `DELETE FROM "shows" WHERE id=$1;`;
+
     value = [req.params.id];
-    pool.query(sqlText, value)
+    pool.query(sqlText1, value)
+    pool.query(sqlText2, value)
         .then((response) => {
             res.sendStatus
         })
