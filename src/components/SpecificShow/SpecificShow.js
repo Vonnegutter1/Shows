@@ -7,11 +7,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
 import Images from '../Images/Images'
 import Axios from 'axios';
+import Grid from '@material-ui/core/Grid';
 
 
 const styles = muiBaseTheme => ({
     card: {
-        maxWidth: 700,
+        width: 600,
         margin: muiBaseTheme.spacing.unit,
         transition: "0.3s",
 
@@ -22,6 +23,8 @@ const styles = muiBaseTheme => ({
     },
     media: {
         paddingTop: "56.25%"
+        
+
     },
     content: {
         textAlign: "center",
@@ -39,10 +42,7 @@ const styles = muiBaseTheme => ({
 
 });
 
-
-
 class SpecificShow extends Component {
-
 
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_SHOW_DETAILS', payload: {shows_id: this.props.match.params.id }});
@@ -61,17 +61,13 @@ class SpecificShow extends Component {
         })
     }
 
-
     render() {
-        
         
         const { classes } = this.props;
         let shows = this.props.storeInstance.fetchShowReducer;
         console.log(shows);
         console.log(this.props.storeInstance.fetchShowReducer)
-        return (
-          
-           
+        return (    
             <>
             <div>
                

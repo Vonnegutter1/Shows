@@ -55,7 +55,7 @@ class UserPage extends Component {
     console.log(item);
     this.props.dispatch({ type: 'FETCH_SHOW_DETAILS', payload: item });
     
-    this.props.history.push(`/specificshow/${item.id}`)
+    this.props.history.push(`/specificshow/${item.shows_id}`)
     console.log(this.props.storeInstance.showReducer);
   }
 

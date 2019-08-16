@@ -25,8 +25,10 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     console.log('req.query.id', req.params.id);
     console.log('req.body.id',req.body)
-    const sqlText = `SELECT * from "shows" 
-    WHERE "id"=$1;`;
+    const sqlText = `SELECT * from "shows"
+    JOIN "images" on "shows"."id" = "images"."shows_id"
+    WHERE "shows"."id" = $1
+    ORDER BY "shows"."id";`;
     value = [req.params.id];
     
     pool.query(sqlText, value)

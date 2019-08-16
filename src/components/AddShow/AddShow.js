@@ -28,6 +28,7 @@ class AddShow extends Component {
                 [propertyName]: event.target.value,
             }
         });
+        
     }
 
     addNewShow = event => {
@@ -47,6 +48,8 @@ class AddShow extends Component {
             }
             
         });
+        this.props.dispatch({ type: 'FETCH_SHOWS' });
+        this.props.history.push(`/home`);
     }
 
     render() {
@@ -58,9 +61,11 @@ class AddShow extends Component {
                     Add New Show
                 </h3>
                 <form onSubmit={this.addNewShow}>
-                    
-                    
-                    Bands: <input id="textbox" type="text" placeholder="Bands" 
+                     All fields with an * are required to complete the new show.
+                     <br/>
+                     <br/>
+                   
+                    * Bands: <input id="textbox" type="text" placeholder="Bands" 
                     value={this.state.newShow.name}
                         onChange={(event) => this.handleChange('band_name', event)}></input>
                     <br/>
@@ -79,7 +84,7 @@ class AddShow extends Component {
                     value={this.state.newShow.city_state}
                         onChange={(event) => this.handleChange('city_state', event)}></input><br />
 
-                    Peoplxe Went With: <input id="textbox" type="text" placeholder="People Went With" 
+                    People Went With: <input id="textbox" type="text" placeholder="People Went With" 
                         value={this.state.newShow.people_went_with}
                         onChange={(event) => this.handleChange('people_went_with', event)}></input>
                         <br />
@@ -91,9 +96,9 @@ class AddShow extends Component {
                     Band's Website: <input id="textbox" type="text" placeholder="Band's Website" 
                     value={this.state.newShow.band_website}
                         onChange={(event) => this.handleChange('band_website', event)}></input><br/>
-                    Upload Image 1 <input id="textbox" type="text" placeholder="Image 1" 
-                    value={this.state.newShow.image1}
-                        onChange={(event) => this.handleChange('image1', event)}
+                    * Upload Image 1 <input id="textbox" type="text" placeholder="Image 1" 
+                    value={this.state.newShow.image1} 
+                        onChange={(event) => this.handleChange('image1', event)} 
                     ></input><br/>
 
                     Upload Image 2 <input id="textbox" type="text" placeholder="Image 2"
@@ -103,7 +108,10 @@ class AddShow extends Component {
                     Upload Image 3 <input id="textbox" type="text" placeholder="Image 3" 
                     value={this.state.newShow.image3}
                         onChange={(event) => this.handleChange('image3', event)}></input><br />
+                        <br/>
+                        <br/>
 
+                   
                     <button type="submit">Save</button>
 
                 </form>
