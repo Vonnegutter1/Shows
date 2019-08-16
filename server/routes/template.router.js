@@ -3,13 +3,14 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * GET route template
+ * Start of GET Routes
  */
 router.get('/', (req, res) => {
    
     const sqlText = `SELECT * FROM "shows"
   JOIN "images" on shows.id = images.shows_id
-  WHERE "main_image" = 'true';`;
+  WHERE "main_image" = 'true'
+  ORDER BY "shows"."id";`;
     pool.query(sqlText)
         .then((response) => {
             res.send(response.rows);
@@ -25,7 +26,7 @@ router.get('/:id', (req, res) => {
     console.log('req.query.id', req.params.id);
     console.log('req.body.id',req.body)
     const sqlText = `SELECT * from "shows" 
-	WHERE "id"=$1;`;
+    WHERE "id"=$1;`;
     value = [req.params.id];
     
     pool.query(sqlText, value)
@@ -45,7 +46,8 @@ router.get('/images/:id', (req, res) => {
     console.log('req.query.id', req.params.id);
     const sqlText = `SELECT * from "shows"
     JOIN "images" on "shows"."id" = "images"."shows_id"
-    WHERE "shows"."id" = $1;`;
+    WHERE "shows"."id" = $1
+    ORDER BY "shows"."id";`;
     value =[req.params.id];
 
     pool.query(sqlText, value)

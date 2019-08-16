@@ -67,7 +67,8 @@ class SpecificShow extends Component {
         
         const { classes } = this.props;
         let shows = this.props.storeInstance.fetchShowReducer;
-
+        console.log(shows);
+        console.log(this.props.storeInstance.fetchShowReducer)
         return (
           
            
@@ -85,48 +86,48 @@ class SpecificShow extends Component {
                             variant={"h6"}
                             gutterBottom
                         >
-                            {shows.band_name}
+                            Bands: {shows.band_name}
                         </Typography>
                         <Typography
                             className={"MuiTypography--subheading"}
                             variant={"caption"}
                         >
-                            {shows.date}
-                        </Typography>
-                        <br />
-                        <Typography
-                            className={"MuiTypography--subheading"}
-                            variant={"caption"}
-                        >
-                            {shows.venue}
+                            Date: {shows.date}
                         </Typography>
                         <br />
                         <Typography
                             className={"MuiTypography--subheading"}
                             variant={"caption"}
                         >
-                            {shows.city_state}
+                            Venue: {shows.venue}
                         </Typography>
                         <br />
                         <Typography
                             className={"MuiTypography--subheading"}
                             variant={"caption"}
                         >
-                            {shows.band_website}
+                            City, State: {shows.city_state}
                         </Typography>
                         <br />
                         <Typography
                             className={"MuiTypography--subheading"}
                             variant={"caption"}
                         >
-                            {shows.people_went_with}
+                            Band's Website: {shows.band_website}
                         </Typography>
                         <br />
                         <Typography
                             className={"MuiTypography--subheading"}
                             variant={"caption"}
                         >
-                            {shows.memories}
+                            People I Went With: {shows.people_went_with}
+                        </Typography>
+                        <br />
+                        <Typography
+                            className={"MuiTypography--subheading"}
+                            variant={"caption"}
+                        >
+                            Memories: {shows.memories}
                         </Typography>
                     </CardContent>
                     <Images shows_id={this.props.storeInstance.fetchShowReducer}/> 
