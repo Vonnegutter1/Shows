@@ -17,6 +17,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import AddShow from '../AddShow/AddShow';
 import SpecificShow from '../SpecificShow/SpecificShow';
+import EditShow from '../EditPage/EditPage';
 
 import './App.css';
 
@@ -60,6 +61,11 @@ class App extends Component {
               exact
               path="/specificshow/:id"
               component={SpecificShow}
+            />
+            <ProtectedRoute
+              exact
+              path="/edit"
+              component={EditShow}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

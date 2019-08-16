@@ -112,7 +112,7 @@ router.post('/add', async (req, res) => {
     }
 });
  
-
+//Delete
 router.delete('/:id', (req, res) => {
     console.log('SKFHJDIUWETKHUG', req.params.id);
     const sqlText1 = `DELETE FROM "images" WHERE shows_id=$1;`;
@@ -128,6 +128,22 @@ router.delete('/:id', (req, res) => {
             console.log(error);
             res.sendStatus(500)
         })
+});
+
+//Edit
+router.put('/edit', (req, res) => {
+    console.log(' in /edit, req.body is:', req.body);
+    
+    const sqlText = `update shows set band_name = $1, date = $2, venue = $3, city_state = $4, memories = $5, people_went_with = $6, band_website = $7 where id = $8;`;
+values = [req.body.band_name, req.body.date, req.body.venue, req.body.city_state, req.body.memories, 
+    req.body.people_went_with, req.body.band_website, req.body.showId]
+pool.query(sqlText, values)
+    .then((response)=> {
+        res.sendStatus(200);
+    })
+    .catch((error) => {
+        res.sendStatus(500);
+    })
 });
 
 

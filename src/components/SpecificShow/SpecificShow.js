@@ -48,6 +48,10 @@ class SpecificShow extends Component {
         this.props.dispatch({ type: 'FETCH_SHOW_DETAILS', payload: {shows_id: this.props.match.params.id }});
     }
 
+    handleEdit = () => {
+        this.props.history.push(`/edit`);
+    }
+
     handleDelete =() => { 
         console.log('Deleted Button Click', this.props.storeInstance.fetchShowReducer.id)
         Axios({
@@ -128,14 +132,13 @@ class SpecificShow extends Component {
                     </CardContent>
                     <Images shows_id={this.props.storeInstance.fetchShowReducer}/> 
                 </Card>
-                    <button type="submit" >Edit</button>
+                    <button type="submit" onClick={this.handleEdit}>Edit</button>
                     <button type="submit" onClick={this.handleDelete}>Delete</button>
             </div>  
           
            </>
         )   
-                
-            
+                        
                 }
 
 };

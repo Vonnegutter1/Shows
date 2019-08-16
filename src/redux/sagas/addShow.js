@@ -7,7 +7,7 @@ function* addShow(action) {
         yield put({ type: 'SET_SHOW', payload: action.payload})
     } catch (error) {
         console.log('Error', error);
-        alert('Could not get concert information. Sadness and shame.')
+        // alert('Could not get concert information. Sadness and shame.')
     }
 }
 export default addShow;
