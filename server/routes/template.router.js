@@ -24,9 +24,8 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     console.log('req.query.id', req.params.id);
     console.log('req.body.id',req.body)
-    const sqlText = `SELECT * from "shows"
-    JOIN "images" on "shows"."id" = "images"."shows_id"
-    WHERE "shows"."id" = $1;`;
+    const sqlText = `SELECT * from "shows" 
+	WHERE "id"=$1;`;
     value = [req.params.id];
     
     pool.query(sqlText, value)
@@ -42,13 +41,33 @@ router.get('/:id', (req, res) => {
 
 
 
+router.get('/images/:id', (req, res) => {
+    console.log('req.query.id', req.params.id);
+    const sqlText = `SELECT * from "shows"
+    JOIN "images" on "shows"."id" = "images"."shows_id"
+    WHERE "shows"."id" = $1;`;
+    value =[req.params.id];
+
+    pool.query(sqlText, value)
+        .then((response) => {
+            console.log('response.rows is', response.rows)
+            res.send(response.rows);
+        })
+        .catch((error) => {
+            console.log('unable to get show images', error)
+            res.sendStatus(500)
+        })
+});
+
+
+
 /**
  * POST route template
  */
 
-router.post('/', async (req, res) => {
+router.post('/add', async (req, res) => {
     const client = await pool.connect();
-
+    console.log(req.body);
     try {
         const {
             band_name,
@@ -59,20 +78,25 @@ router.post('/', async (req, res) => {
             people_went_with,
             band_website,
             images,
+
         } = req.body;
         await client.query('BEGIN')
         const showsInsertResults = await client.query (`INSERT INTO "shows" ("band_name", "date", "venue", "city_state", "memories", "people_went_with", 
         "band_website")
-        VALUES ($1, $2, $3, $4, $5, $6)
-        RETURNING id;`, [band_name, date, venue, city_state, memories, people_went_with]);
-        const showId = showInsertResults.rows[0].id;
-
-        await Promise.all(shows.map(show => {
-            const insertLineItemText = `INSERT INTO "images" ("images") 
-            VALUES ($1)`;
-            const insertLineItemValues = [images];
-            return client.query(insertLineItemText, insertLineItemValues);
-        }));
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        RETURNING id;`, [band_name, date, venue, city_state, memories, people_went_with, band_website]);
+        const showId = showsInsertResults.rows[0].id;
+        console.log('This is the', showId )
+        await Promise.all(images.map(image => {
+         
+         if
+             (image !== '') {
+             const insertLineItemText = `INSERT INTO "images" ("shows_id", "url", "main_image") 
+            VALUES ($1, $2, $3)`;
+             const insertLineItemValues = [showId, image, true];
+             return client.query(insertLineItemText, insertLineItemValues);
+         }
+        }));       
         await client.query('COMMIT')
         res.sendStatus(201);
     } catch (error){
@@ -83,39 +107,22 @@ router.post('/', async (req, res) => {
         client.release()
     }
 });
-// router.post('/', async (req, res) => {
-//     const client = await pool.connect();
+ 
 
-//     try {
-//         const {
-//             customer_name,
-//             street_address,
-//             city,
-//             zip,
-//             type,
-//             total,
-//             pizzas
-//         } = req.body;
-//         await client.query('BEGIN')
-//         const orderInsertResults = await client.query(`INSERT INTO "orders" ("customer_name", "street_address", "city", "zip", "type", "total")
-//         VALUES ($1, $2, $3, $4, $5, $6)
-//         RETURNING id;`, [customer_name, street_address, city, zip, type, total]);
-//         const orderId = orderInsertResults.rows[0].id;
+router.delete('/:id', (req, res) => {
+    console.log('SKFHJDIUWETKHUG', req.params.id);
+    const sqlText = `DELETE FROM "shows" WHERE id=$1;`
+    value = [req.params.id];
+    pool.query(sqlText, value)
+        .then((response) => {
+            res.sendStatus
+        })
+        .catch((error) => {
+            console.log(error);
+            res.sendStatus(500)
+        })
+});
 
-//         await Promise.all(pizzas.map(pizza => {
-//             const insertLineItemText = `INSERT INTO "line_item" ("order_id", "pizza_id", "quantity") VALUES ($1, $2, $3)`;
-//             const insertLineItemValues = [orderId, pizza.id, pizza.quantity];
-//             return client.query(insertLineItemText, insertLineItemValues);
-//         }));
-//         await client.query('COMMIT')
-//         res.sendStatus(201);
-//     } catch (error) {
-//         await client.query('ROLLBACK')
-//         console.log('Error POST /api/order', error);
-//         res.sendStatus(500);
-//     } finally {
-//         client.release()
-//     }
-// });
+
 
 module.exports = router;

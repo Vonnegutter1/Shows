@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
+import { withRouter } from 'react-router-dom';
 
 
 const styles = muiBaseTheme => ({
@@ -40,14 +39,17 @@ const styles = muiBaseTheme => ({
 class Images extends Component {
 
     componentDidMount() {
-        this.props.dispatch({ type: 'FETCH_SHOW_DETAILS', payload: { shows_id: this.props.match.params.id } });
+        this.props.dispatch({ type: 'FETCH_SHOW_IMAGES', payload: this.props.match.params.id });
+       
+        console.log('showsid is', this.props.storeInstance.fetchShowReducer.id);
+        
     }
     render() {
 
         const { classes } = this.props;
-        let shows = this.props.storeInstance.fetchShowReducer;
+        let shows = this.props.storeInstance.images;
         // const showId = this.props.match.params.id;
-
+        
         return (
 
             <div>
@@ -55,10 +57,10 @@ class Images extends Component {
                     <Card key={item.id} className={classes.card}>
                         <CardMedia
                             className={classes.media}
-
                             image={item.url} />
                     </Card>
                 ))}
+            
 
             </div>
         )
@@ -70,5 +72,4 @@ const mapStateToProps = storeInstance => ({
     storeInstance
 })
 
-// this allows us to use <App /> in index.js
-export default withStyles(styles)(connect(mapStateToProps)(Images));
+export default withStyles(styles)(withRouter(connect(mapStateToProps)(Images)));

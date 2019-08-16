@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './AddShow.css';
-
 
 
 class AddShow extends Component {
+    
     state = {
         newShow: {
             band_name: '',
@@ -14,9 +13,10 @@ class AddShow extends Component {
             memories: '',
             people_went_with: '',
             band_website: '',
-            images: '',
-            images: '',
-            images: '',
+            image1: '',
+            image2: '', 
+            image3: '',
+                
         }
     }
 
@@ -32,33 +32,33 @@ class AddShow extends Component {
 
     addNewShow = event => {
         event.preventDefault();
-        this.props.dispatch({ type: 'ADD_SHOW', payload: this.state.newShow })
+        let images = []
+        images.push(this.state.newShow.image1, this.state.newShow.image2, this.state.newShow.image3);
+        let objectToSend = {
+            ...this.state.newShow, images
+        }
+        
+        this.props.dispatch({ type: 'ADD_SHOW', payload: objectToSend })
         this.setState({
             newShow: {
+                ...this.state.newShow,
                 id: this.state.newShow.id + 1,
                 
             }
+            
         });
     }
 
-    // componentDidMount() {
-    //     this.props.dispatch({ type: '' });
-    // }
-
-    // handleClick = (item) => {
-    //     console.log(item);
-    //     this.props.history.push(`/specificshow/${item.id}`)
-    // }
-
     render() {
-       
+        console.log(this.state.newShow.images)
         return (
             <div class="form">
                 <pre>{JSON.stringify(this.state)}</pre>
                 <h3>
                     Add New Show
                 </h3>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.addNewShow}>
+                    
                     
                     Bands: <input id="textbox" type="text" placeholder="Bands" 
                     value={this.state.newShow.name}
@@ -92,32 +92,22 @@ class AddShow extends Component {
                     value={this.state.newShow.band_website}
                         onChange={(event) => this.handleChange('band_website', event)}></input><br/>
 
-                    Upload Image <input id="textbox" type="text" placeholder="Image 1" 
-                    value={this.state.newShow.url}
-                        onChange={(event) => this.handleChange('url', event)}
+                    Upload Image 1 <input id="textbox" type="text" placeholder="Image 1" 
+                    value={this.state.newShow.image1}
+                        onChange={(event) => this.handleChange('image1', event)}
                     ></input><br/>
 
-                    Upload Image <input id="textbox" type="text" placeholder="Image 2"
-                        value={this.state.newShow.url}
-                        onChange={(event) => this.handleChange('url', event)}></input><br />
+                    Upload Image 2 <input id="textbox" type="text" placeholder="Image 2"
+                        value={this.state.newShow.image2}
+                        onChange={(event) => this.handleChange('image2', event)}></input><br />
 
-                    Upload Image <input id="textbox" type="text" placeholder="Image 3" 
-                    value={this.state.newShow.url}
-                        onChange={(event) => this.handleChange('url', event)}></input><br />
-                
+                    Upload Image 3 <input id="textbox" type="text" placeholder="Image 3" 
+                    value={this.state.newShow.image3}
+                        onChange={(event) => this.handleChange('image3', event)}></input><br />
+
+                    <button type="submit" >Save</button>
 
                 </form>
-
-                <button type="submit" onClick>Save</button>
-                {/* <div>
-                    {shows.map(item => (
-                        <p key={item.id}>
-                            <p onClick={() => this.handleClick(item)}>Show: {item.band_name}</p>
-                            <br />
-
-                        </p>
-                    ))}
-                </div> */}
 
             </div>
         )

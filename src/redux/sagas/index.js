@@ -5,6 +5,7 @@ import userSaga from './userSaga';
 import showSaga from './showSaga';
 import showDetailRoot from './fetchShowDetails';
 import addShow from './addShow';
+import images from './images'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -27,5 +28,6 @@ export default function* rootSaga() {
     showSaga(),
     showDetailRoot(),
     addShow(),
+    images(),
   ]);
 }

@@ -5,6 +5,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
+import Images from '../Images/Images'
+import Axios from 'axios';
 
 
 const styles = muiBaseTheme => ({
@@ -37,31 +39,42 @@ const styles = muiBaseTheme => ({
 
 });
 
+
+
 class SpecificShow extends Component {
+
 
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_SHOW_DETAILS', payload: {shows_id: this.props.match.params.id }});
     }
+
+    handleDelete =() => { 
+        console.log('Deleted Button Click', this.props.storeInstance.fetchShowReducer.id)
+        Axios({
+            method: 'DELETE',
+            url: `/shows/${this.props.storeInstance.fetchShowReducer.id}`
+        }).then ((response) => {
+            console.log('Deleted', response)
+        }).catch((error) => {
+            console.log(error);
+            alert('Unable to delete item');
+        })
+    }
+
+
     render() {
+        
         
         const { classes } = this.props;
         let shows = this.props.storeInstance.fetchShowReducer;
-        // const showId = this.props.match.params.id;
 
         return (
-            
+          
+           
+            <>
             <div>
-                  {shows.map(item => (
-                    <Card key={item.id} className={classes.card}>
-                        <CardMedia
-                            className={classes.media}
-
-                            image={item.url} /></Card>
-                ))}
-                
-
-                {shows.map(item => (
-                <Card key={item.id} className={classes.card}>
+               
+                <Card className={classes.card}>
                     {/* <CardMedia
                         className={classes.media}
                         image={item.url}
@@ -72,59 +85,61 @@ class SpecificShow extends Component {
                             variant={"h6"}
                             gutterBottom
                         >
-                            {item.band_name}
-                            {}
+                            {shows.band_name}
                         </Typography>
                         <Typography
                             className={"MuiTypography--subheading"}
                             variant={"caption"}
                         >
-                            {item.date}
-                        </Typography>
-                        <br />
-                        <Typography
-                            className={"MuiTypography--subheading"}
-                            variant={"caption"}
-                        >
-                            {item.venue}
+                            {shows.date}
                         </Typography>
                         <br />
                         <Typography
                             className={"MuiTypography--subheading"}
                             variant={"caption"}
                         >
-                            {item.city_state}
+                            {shows.venue}
                         </Typography>
                         <br />
                         <Typography
                             className={"MuiTypography--subheading"}
                             variant={"caption"}
                         >
-                            {item.band_website}
+                            {shows.city_state}
                         </Typography>
                         <br />
                         <Typography
                             className={"MuiTypography--subheading"}
                             variant={"caption"}
                         >
-                            {item.people_went_with}
+                            {shows.band_website}
                         </Typography>
                         <br />
                         <Typography
                             className={"MuiTypography--subheading"}
                             variant={"caption"}
                         >
-                            {item.memories}
+                            {shows.people_went_with}
+                        </Typography>
+                        <br />
+                        <Typography
+                            className={"MuiTypography--subheading"}
+                            variant={"caption"}
+                        >
+                            {shows.memories}
                         </Typography>
                     </CardContent>
-
+                    <Images shows_id={this.props.storeInstance.fetchShowReducer}/> 
                 </Card>
+                    <button type="submit" >Edit</button>
+                    <button type="submit" onClick={this.handleDelete}>Delete</button>
+            </div>  
+          
+           </>
+        )   
                 
-                ))}
-              
-            </div>
-        )
-    }
+            
+                }
 
 };
 

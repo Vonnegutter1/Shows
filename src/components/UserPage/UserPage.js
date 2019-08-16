@@ -6,7 +6,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
+import './UserPage.css';
 import Grid from '@material-ui/core/Grid';
+
 
 const styles = muiBaseTheme => ({
   card: {
@@ -49,9 +51,12 @@ class UserPage extends Component {
   handleClick = (item) => {
     console.log(item);
     this.props.dispatch({ type: 'FETCH_SHOW_DETAILS', payload: item });
+    
     this.props.history.push(`/specificshow/${item.id}`)
+    console.log(this.props.storeInstance.showReducer);
   }
 
+  handleAddClick = ()
   render() {
     
     const { classes } = this.props;
@@ -60,15 +65,15 @@ class UserPage extends Component {
     
     return (
       <div>
-        <button type="submit">Add New Show</button>
+        <button type="submit" onClick={() => this.handleAddClick(item)}>Add New Show</button>
         <h1 id="welcome">
           <p><center>I Was There</center></p>
         </h1>
         <p><center>Click on a show to see more details!</center></p>
 
-  
+  <Grid className="center">
           {shows.map(item => 
-          
+            
             <Card key={item.id} className={classes.card} onClick={() => this.handleClick(item)}>
               <CardMedia
                 className={classes.media}
@@ -115,8 +120,10 @@ class UserPage extends Component {
 
             </Card>
           )}
-       
+        </Grid>
+        
         <LogOutButton className="log-in" />
+      
       </div>
     )
   }

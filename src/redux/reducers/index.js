@@ -5,6 +5,7 @@ import user from './userReducer';
 import showReducer from './showReducer';
 import fetchShowReducer from './fetchShowReducer';
 import addShowData from './addShowData';
+import images from './images';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   showReducer,
   fetchShowReducer,
   addShowData,
+  images,
 });
 
 export default rootReducer;
