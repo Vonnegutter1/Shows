@@ -31,7 +31,9 @@ class LoginPage extends Component {
 
   render() {
     return (
+      
       <div>
+        
         {this.props.errors.loginMessage && (
           <h2
             className="alert"

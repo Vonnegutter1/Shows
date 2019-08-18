@@ -16,6 +16,21 @@ class EditShow extends Component {
         }
     }
 
+    formData = () => {
+        this.setState ({
+            editShow: {
+            band_name: 'New Pornographers:Belle and Sebastian',
+            date: '3/5/2006',
+            venue: '930 Club',
+            city_state: 'Washington DC',
+            memories: 'Had a hell of a time!',
+            people_went_with: 'Amanda',
+            band_website: '',
+            }
+        })
+    }
+    
+
     handleChange = (propertyName, event) => {
         console.log('event happened', this.state)
         this.setState({
@@ -45,11 +60,11 @@ class EditShow extends Component {
         return (
             <div class="form">
 
-                <h3>
+                <h2 onClick={this.formData}>
                     Edit Show
-                </h3>
-                <form onSubmit={this.editShow}>
-
+                </h2>
+                <form onSubmit={this.editShow} >
+                    Edit Show:
                      <br />
                     <br />
 
@@ -94,7 +109,7 @@ class EditShow extends Component {
 
             </div>
         )
-    }
+        }
 };
 
 const mapStateToProps = storeInstance => ({

@@ -1,7 +1,8 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
-    background-color: #949FB1
+    color: #EFEFEF;
+    background-color: #324047;
 }
 
 .alert {
@@ -10,7 +11,7 @@ body {
 }
 
 form {
-    background-color: #80788D;
+    background-color: rgba(243, 10, 95, 0.425);
     width: 50%;
     height: 450px;
     margin: 20px auto;
@@ -54,4 +55,12 @@ input {
 
 .add {
     color: #0F131F
+}
+
+.button {
+    background-color: lightgrey
+}
+
+.button1 {
+    background-color: lightgrey
 }

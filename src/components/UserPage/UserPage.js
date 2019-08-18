@@ -73,7 +73,8 @@ class UserPage extends Component {
     
     return (
       <div>
-        <button type="submit" onClick={() => this.handleAddClick()}>Add New Show</button>
+        
+        <button className="button" type="submit" onClick={() => this.handleAddClick()}>Add New Show</button>
         <h1 id="welcome">
           <p><center>I Was There</center></p>
         </h1>
@@ -92,7 +93,7 @@ class UserPage extends Component {
                   variant={"h6"}
                   gutterBottom
                 >
-                 Bands: {item.band_name}
+                 Concert: {item.band_name}
                 </Typography>
                 <Typography
                   className={"MuiTypography--subheading"}
@@ -130,7 +131,7 @@ class UserPage extends Component {
           
         </Grid>
         
-        <LogOutButton className="log-in" />
+      
       
       </div>
     )

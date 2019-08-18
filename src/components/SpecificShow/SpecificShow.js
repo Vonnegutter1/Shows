@@ -139,8 +139,8 @@ class SpecificShow extends Component {
 
                     </Grid>
                     
-                    <button type="submit" onClick={this.handleEdit}>Edit</button>
-                    <button type="submit" onClick={this.handleDelete}>Delete</button>
+                    <button className="button1" type="submit" onClick={this.handleEdit}>Edit</button>
+                    <button className="button1" type="submit" onClick={this.handleDelete}>Delete</button>
             </div>  
           
            </>

@@ -52,12 +52,29 @@ class AddShow extends Component {
         this.props.history.push(`/home`);
     }
 
+    formData = () => {
+        this.setState({
+            newShow: {
+                band_name: 'David Bowie',
+                date: '12/31/1979',
+                venue: 'Bowery Ballroom',
+                city_state: 'New York City, New York',
+                memories: 'BEST SHOW EVER!',
+                people_went_with: 'All my friends!!!',
+                band_website: '',
+                image1: 'https://static.stereogum.com/uploads/2016/01/David-Bowie-640x360.jpg',
+                image2: '',
+                image3: '',
+            }
+        })
+    }
+
     render() {
         console.log(this.state.newShow.images)
         return (
             <div class="form">
                 
-                <h3 class="add">
+                <h3 class="add" onClick={this.formData}>
                     Add New Show
                 </h3>
                 <form onSubmit={this.addNewShow}>
