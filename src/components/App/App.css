@@ -1,7 +1,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
-    background-image: url("")
+    background-color: #949FB1
 }
 
 .alert {
@@ -50,4 +50,8 @@ input {
     outline:0;
     border-bottom:1px solid #444; 
     cursor: pointer;
+}
+
+.add {
+    color: #0F131F
 }

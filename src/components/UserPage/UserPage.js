@@ -13,7 +13,7 @@ import Grid from '@material-ui/core/Grid';
 const styles = muiBaseTheme => ({
   card: {
     
-    width: 200,
+    width: 400,
     margin: muiBaseTheme.spacing.unit,
     transition: "0.3s",
     
@@ -92,13 +92,13 @@ class UserPage extends Component {
                   variant={"h6"}
                   gutterBottom
                 >
-                  {item.band_name}
+                 Bands: {item.band_name}
                 </Typography>
                 <Typography
                   className={"MuiTypography--subheading"}
                   variant={"caption"}
                 >
-                  {item.date}
+                 Date: {item.date}
                 </Typography>
                 <br/>
                 {/* <Typography

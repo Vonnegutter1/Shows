@@ -57,7 +57,7 @@ class AddShow extends Component {
         return (
             <div class="form">
                 
-                <h3>
+                <h3 class="add">
                     Add New Show
                 </h3>
                 <form onSubmit={this.addNewShow}>
@@ -93,9 +93,9 @@ class AddShow extends Component {
                     value={this.state.newShow.memories}
                         onChange={(event) => this.handleChange('memories', event)}></input><br/>
 
-                    Band's Website: <input id="textbox" type="text" placeholder="Band's Website" 
+                    {/* Band's Website: <input id="textbox" type="text" placeholder="Band's Website" 
                     value={this.state.newShow.band_website}
-                        onChange={(event) => this.handleChange('band_website', event)}></input><br/>
+                        onChange={(event) => this.handleChange('band_website', event)}></input><br/> */}
                     * Upload Image 1 <input id="textbox" type="text" placeholder="Image 1" 
                     value={this.state.newShow.image1} 
                         onChange={(event) => this.handleChange('image1', event)} 

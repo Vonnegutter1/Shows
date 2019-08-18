@@ -63,6 +63,7 @@ class SpecificShow extends Component {
             console.log(error);
             alert('Unable to delete item');
         })
+        this.props.history.push(`/home`);
     }
 
     render() {
@@ -74,7 +75,10 @@ class SpecificShow extends Component {
         return (    
             <>
             <div>
-               
+               <Grid container spacing={24}>
+                    
+                   <Grid item xs={3}>
+                        </Grid>
                 <Card className={classes.card}>
                     {/* <CardMedia
                         className={classes.media}
@@ -108,13 +112,13 @@ class SpecificShow extends Component {
                         >
                             City, State: {shows.city_state}
                         </Typography>
-                        <br />
+                        {/* <br />
                         <Typography
                             className={"MuiTypography--subheading"}
                             variant={"caption"}
                         >
                             Band's Website: {shows.band_website}
-                        </Typography>
+                        </Typography> */}
                         <br />
                         <Typography
                             className={"MuiTypography--subheading"}
@@ -132,6 +136,9 @@ class SpecificShow extends Component {
                     </CardContent>
                     <Images shows_id={this.props.storeInstance.fetchShowReducer}/> 
                 </Card>
+
+                    </Grid>
+                    
                     <button type="submit" onClick={this.handleEdit}>Edit</button>
                     <button type="submit" onClick={this.handleDelete}>Delete</button>
             </div>  
