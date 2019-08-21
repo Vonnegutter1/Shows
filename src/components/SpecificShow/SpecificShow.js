@@ -63,7 +63,9 @@ class SpecificShow extends Component {
             console.log(error);
             alert('Unable to delete item');
         })
+        
         this.props.history.push(`/home`);
+        this.props.dispatch({ type: 'FETCH_SHOWS'});
     }
 
     render() {

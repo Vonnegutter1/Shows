@@ -3,8 +3,8 @@ import axios from 'axios';
 
 function* editShow(action) {
     try {
-        console.log('in editShow, action.payload is:', action.payload);
-        yield axios.put(`/shows/edit/`, action.payload.editShow);
+        console.log('in editShow, action.payload is:', action.payload.editShow);
+        yield axios.put(`/shows/edit`, action.payload.editShow);
         
     } catch (error) {
         console.log('Error', error);

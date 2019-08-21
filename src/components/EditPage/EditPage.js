@@ -16,19 +16,6 @@ class EditShow extends Component {
         }
     }
 
-    formData = () => {
-        this.setState ({
-            editShow: {
-            band_name: 'New Pornographers:Belle and Sebastian',
-            date: '3/5/2006',
-            venue: '930 Club',
-            city_state: 'Washington DC',
-            memories: 'Had a hell of a time!',
-            people_went_with: 'Amanda',
-            band_website: '',
-            }
-        })
-    }
     
 
     handleChange = (propertyName, event) => {
@@ -56,11 +43,11 @@ class EditShow extends Component {
     }
 
     render() {
-        console.log(this.state.editShow.images)
+       // console.log(this.state.editShow.images)
         return (
             <div class="form">
 
-                <h2 onClick={this.formData}>
+                <h2>
                     Edit Show
                 </h2>
                 <form onSubmit={this.editShow} >

@@ -13,7 +13,7 @@ import Grid from '@material-ui/core/Grid';
 const styles = muiBaseTheme => ({
   card: {
     
-    width: 400,
+    width: 350,
     margin: muiBaseTheme.spacing.unit,
     transition: "0.3s",
     
@@ -22,7 +22,7 @@ const styles = muiBaseTheme => ({
     "&:hover": {
       boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
     },
-    height: '450px'
+    height: '400px'
   },
   media: {
     paddingTop: "56.25%",
@@ -80,7 +80,9 @@ class UserPage extends Component {
         </h1>
         <p><center>Click on a show to see more details!</center></p>
 
-  <Grid className="center">
+        <Grid className="center" container spacing={12}>
+          {/* <Grid item xs={3}>
+          </Grid> */}
           {shows.map(item => 
             <Card key={item.id} className={classes.card} onClick={() => this.handleClick(item)}>
               <CardMedia
