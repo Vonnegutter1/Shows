@@ -16,7 +16,6 @@ class EditShow extends Component {
         }
     }
 
-    
 
     handleChange = (propertyName, event) => {
         console.log('event happened', this.state)

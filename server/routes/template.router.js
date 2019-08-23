@@ -1,17 +1,23 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+
 
 /**
  * Start of GET Routes
  */
+
+ //add user id (auth) for all gets to only get those users
 router.get('/', (req, res) => {
    
     const sqlText = `SELECT * FROM "shows"
   JOIN "images" on shows.id = images.shows_id
   WHERE "main_image" = 'true'
+  AND "user_id"=$1
   ORDER BY "shows"."id";`;
-    pool.query(sqlText)
+  const value = [req.user.id]
+    pool.query(sqlText, value)
         .then((response) => {
             res.send(response.rows);
             console.log('In Router GET shows data', response.rows);
@@ -85,10 +91,12 @@ router.post('/add', async (req, res) => {
 
         } = req.body;
         await client.query('BEGIN')
-        const showsInsertResults = await client.query (`INSERT INTO "shows" ("band_name", "date", "venue", "city_state", "memories", "people_went_with", 
+        // add user id column so post is associated with that specific user 
+
+        const showsInsertResults = await client.query(`INSERT INTO "shows" ("user_id", "band_name", "date", "venue", "city_state", "memories", "people_went_with", 
         "band_website")
-        VALUES ($1, $2, $3, $4, $5, $6, $7)
-        RETURNING id;`, [band_name, date, venue, city_state, memories, people_went_with, band_website]);
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        RETURNING id;`, [req.user.id, band_name, date, venue, city_state, memories, people_went_with, band_website]);
         const showId = showsInsertResults.rows[0].id;
         console.log('This is the', showId )
         await Promise.all(images.map(image => {

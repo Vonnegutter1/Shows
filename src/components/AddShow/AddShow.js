@@ -21,7 +21,7 @@ class AddShow extends Component {
     }
 
     handleChange = (propertyName, event) => {
-        console.log('event happended')
+        console.log('event happened')
         this.setState({
             newShow: {
                 ...this.state.newShow,
